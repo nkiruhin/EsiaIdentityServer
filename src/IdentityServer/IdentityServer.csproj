@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="IdentityServer4" Version="4.0.0" />
+
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\AspNet.Security.OAuth.Esia2\AspNet.Security.OAuth.Esia.csproj" />
+  </ItemGroup>
+</Project>
