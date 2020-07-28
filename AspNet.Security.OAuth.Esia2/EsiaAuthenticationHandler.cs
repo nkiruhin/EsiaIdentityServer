@@ -157,11 +157,7 @@ namespace AspNet.Security.OAuth.Esia
                 return HandleRequestResult.Fail("Failed to retrieve user information from remote server.", properties);
             }
         }
-        //protected override async Task<OAuthTokenResponse> ExchangeCodeAsync([NotNull] OAuthCodeExchangeContext context)
-        //{
-        //    Options.ClientSecret = await secret.GenerateClientSecretAsync();
-        //}
-
+       
         protected override async Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)
         {
             var secret = new EsiaClientSecret(Options);

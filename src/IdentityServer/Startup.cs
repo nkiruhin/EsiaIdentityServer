@@ -3,6 +3,7 @@
 
 
 using AspNet.Security.OAuth.Esia;
+using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,7 +47,8 @@ namespace IdentityServer
                     options.UserInformationEndpoint = EsiaConstants.TestUserInformationUrl;
                     options.RedirectUrlServiceEndpoint = EsiaConstants.RedirectUrlServiceEndpoint;
                     options.SignServiceEndpoint = EsiaConstants.SignServiceEndpoint;
-
+                    options.SaveTokens = true;
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
                     // получение контактных данных пользователя (почта, телефон), по умолчанию отключено
                     // options.FetchContactInfo = true;
                 });
