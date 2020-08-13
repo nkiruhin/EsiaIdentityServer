@@ -37,6 +37,11 @@ namespace AspNet.Security.OAuth.Esia
             var secret = new EsiaClientSecret(Options);
             ///Options.ClientSecret = secret.GenerateClientSecretAsync().Result;
             Options.ClientSecret = secret.GetSecretData(redirectUri).Result;
+            var clientSecret = secret.GenerateClientSecretByOptionsAsync(secret).Result;
+            if(clientSecret == Options.ClientSecret)
+            {
+                throw new Exception();
+            }
             var queryStrings = new Dictionary<string, string>
             {
                 { "response_type", "code" },
@@ -60,8 +65,8 @@ namespace AspNet.Security.OAuth.Esia
             {
                 return HandleRequestResult.Fail("The return data was missing or invalid.");
             }
-            
-            // OAuth2 10.12 CSRF
+
+            //OAuth2 10.12 CSRF
             if (!ValidateCorrelationId(properties))
             {
                 return HandleRequestResult.Fail("Correlation failed.", properties);

@@ -41,6 +41,13 @@ namespace AspNet.Security.OAuth.Esia
             //Secret = EsiaHelpers.Base64UrlEncode(encodedSignature);
             return Secret;
         }
+
+        internal async Task<string> GenerateClientSecretByOptionsAsync(EsiaClientSecret secret)
+        {
+            string signMessage = secret.Scope + secret.Timestamp + Options.ClientId + secret.State;
+            return await SignMessageAsync(signMessage);
+        }
+
         public async Task<string> GetSecretData(string redirectUri)
         {
             var requestParam = new Dictionary<string, string>
